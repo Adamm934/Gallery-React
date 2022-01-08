@@ -5,7 +5,7 @@ const navbarStyle = {
     backgroundColor: 'rgba(229, 213, 255, 0.3)'
 };
 
-const Header = ({title}) => {
+const Headers = ({title}) => {
   return (
     <Navbar style={navbarStyle}  variant = "light">
         <Container>
@@ -17,4 +17,4 @@ const Header = ({title}) => {
   )
 };
 
-export default Header;
+export default Headers;
