@@ -5,6 +5,7 @@ import Search from './components/Search';
 import ImageCard from './components/ImageCard';
 import { Col, Row, Container } from 'react-bootstrap';
 
+
 const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
 
 const App = () => {
@@ -45,7 +46,7 @@ const App = () => {
             <Col key={i} className='pb-3'>
               <ImageCard image={image} daleteImage = {handleDeleteImage}/>
             </Col>
-          ))}
+          ))};
         </Row>
       </Container>
     </div>
