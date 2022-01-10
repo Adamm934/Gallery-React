@@ -5,8 +5,7 @@ import Search from './components/Search';
 import ImageCard from './components/ImageCard';
 import { Col, Row, Container } from 'react-bootstrap';
 
-
-const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
+const API_URL = process.env.REACT_APP_API_URL || 'http://192.168.0.102:5050';
 
 const App = () => {
   //this hook state used in order to change actions on click button
@@ -14,14 +13,10 @@ const App = () => {
 
   const [images, setImages] = useState([]);
 
-
-
   const handleSearchSubmit = (e) => {
     e.preventDefault();
 
-    fetch(
-      `https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`
-    )
+    fetch(`${API_URL}/new-image?query=${word}`)
       .then((res) => res.json())
       .then((data) => {
         setImages([{ ...data, title: word }, ...images]);
@@ -32,9 +27,9 @@ const App = () => {
     setWord('');
   };
 
-    const handleDeleteImage = (id) => {
-      setImages(images.filter((image) => image.id !== id));
-    };
+  const handleDeleteImage = (id) => {
+    setImages(images.filter((image) => image.id !== id));
+  };
 
   return (
     <div>
@@ -43,10 +38,11 @@ const App = () => {
       <Container className="mt-4">
         <Row xs={1} md={2} lg={3}>
           {images.map((image, i) => (
-            <Col key={i} className='pb-3'>
-              <ImageCard image={image} daleteImage = {handleDeleteImage}/>
+            <Col key={i} className="pb-3">
+              <ImageCard image={image} daleteImage={handleDeleteImage} />
             </Col>
-          ))};
+          ))}
+          ;
         </Row>
       </Container>
     </div>
